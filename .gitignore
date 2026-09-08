@@ -1,0 +1,54 @@
+# Local settings, conversations, recordings, caches and browser profiles
+/config.json
+/.env
+/.env.*
+!/.env.example
+/data/
+/logs/
+/backups/
+/visual-qa*/
+*.log
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Reproducible dependencies and generated code
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*-env/
+/wallpaper/vrm-avatar.bundle.js
+/espeak-files.json
+
+# Local licensed assets are not redistributable with this repository
+/wallpaper/assets/
+/wallpaper/portrait*.png
+# Local copies/junction of the same licensed assets and generated wallpaper
+/public/assets/
+/public/wallpaper/
+*.pmx
+*.pmd
+*.vrm
+*.glb
+*.gguf
+*.safetensors
+*.onnx
+*.pt
+*.pth
+*.wav
+*.mp3
+*.mp4
+*.zip
+*.7z
+
+# Private platform support diagnostics; engineering findings are in TAKEOVER.md
+/docs/safety-pause-diagnosis-*.md
+
+# Editor and OS files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/

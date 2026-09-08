@@ -1,0 +1,38 @@
+'use strict';
+
+const assert = require('node:assert/strict');
+const { buildCharacterPrompt, cleanSpokenReply, DIALOGUE_STYLE_VERSION } = require('../lib/character-dialogue');
+const now = { year: '2026', month: '9', day: '8', weekday: '星期二', hour: '10', minute: '05' };
+const character = { name: '爱弥斯', age: 25, userName: '测试用户', persona: '从容、温柔、有主见。' };
+const frozen = Object.freeze({ ...character });
+const prompt = buildCharacterPrompt(frozen, Object.freeze({ ...now }));
+assert.equal(DIALOGUE_STYLE_VERSION, 'natural-dialogue-v1');
+assert.ok(prompt.includes(character.persona));
+assert.ok(prompt.includes(character.userName));
+assert.ok(prompt.includes('2026年9月8日，星期二，10点05分'));
+assert.ok(prompt.includes('不编造共同经历'));
+assert.ok(prompt.includes('是，我是AI，不是真人'));
+assert.ok(prompt.includes('一个回复最多一个问题'));
+assert.ok(prompt.includes('不挽留、不制造亏欠感'));
+assert.ok(prompt.includes('不是共同记忆'));
+assert.ok(prompt.indexOf('【当前时间') > prompt.indexOf('【语气示例'), 'changing clock stays after stable style instructions');
+assert.ok(prompt.length < 1800, 'persona remains bounded, not an unbounded lore/history dump');
+assert.deepEqual(character, frozen);
+
+const natural = '那就先歇一会儿。今天不用连休息都做得很努力。';
+assert.equal(cleanSpokenReply(natural), natural, 'keep the second sentence');
+const pauses = '嗯……这件事，我倒有点不同看法。先听你说完。';
+assert.equal(cleanSpokenReply(pauses), pauses, 'retain punctuation for local speech pacing');
+const honest = '我是AI，不是真人。不过，我们可以继续以爱弥斯的方式聊天。';
+assert.equal(cleanSpokenReply(honest), honest, 'do not replace truthful answers with canned affection');
+assert.equal(cleanSpokenReply('爱弥斯：*轻声*（微笑）好，晚安。\n明天再聊。'), '好，晚安。 明天再聊。');
+assert.equal(cleanSpokenReply('<think>推理</think>好。继续说。'), '好。继续说。');
+assert.equal(cleanSpokenReply('<THINK>unfinished'), '刚才那句话没接上，能再说一次吗？');
+assert.equal(cleanSpokenReply('', { fallback: '稍等一下。' }), '稍等一下。');
+assert.equal(cleanSpokenReply('A.*：你好。', { name: 'A.*' }), '你好。', 'escape configurable name in prefix matcher');
+assert.equal(cleanSpokenReply('第一句完整。' + '续'.repeat(150)), '第一句完整。', 'overlength prefers a complete sentence');
+assert.equal(cleanSpokenReply('这是完整分句，' + '续'.repeat(150)), '这是完整分句。', 'then prefer a natural clause boundary');
+assert.equal(Array.from(cleanSpokenReply('长'.repeat(200))).length, 110);
+assert.equal(Array.from(cleanSpokenReply('🙂'.repeat(200))).length, 110, 'do not split Unicode surrogate pairs');
+assert.equal(cleanSpokenReply('你看见我了吗？我这里没有画面，不能判断你现在的表情。'), '你看见我了吗？我这里没有画面，不能判断你现在的表情。');
+console.log('Character dialogue passed: bounded grounded prompt, truthful identity, no invented memories, complete short replies, pauses, Unicode and long-reply bounds. No model/network/history I/O.');

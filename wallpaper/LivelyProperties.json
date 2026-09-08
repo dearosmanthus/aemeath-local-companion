@@ -1,0 +1,41 @@
+{
+  "audioReactive": {
+    "type": "checkbox",
+    "value": true,
+    "text": "声音响应"
+  },
+  "effectStrength": {
+    "type": "slider",
+    "value": 100,
+    "min": 0,
+    "max": 180,
+    "step": 5,
+    "text": "动效强度"
+  },
+  "particleDensity": {
+    "type": "slider",
+    "value": 34,
+    "min": 0,
+    "max": 90,
+    "step": 2,
+    "text": "粒子数量"
+  },
+  "dimAmount": {
+    "type": "slider",
+    "value": 20,
+    "min": 0,
+    "max": 55,
+    "step": 5,
+    "text": "背景压暗"
+  },
+  "showClock": {
+    "type": "checkbox",
+    "value": true,
+    "text": "显示时钟"
+  },
+  "accentColor": {
+    "type": "color",
+    "value": "#52eaff",
+    "text": "光核颜色"
+  }
+}

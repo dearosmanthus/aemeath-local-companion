@@ -1,0 +1,25 @@
+.dialogue-channel { font: 12px/1.65 'Segoe UI', 'Microsoft YaHei UI', sans-serif; color: #eee9f8; }
+.channel-toggle { position: fixed; z-index: 16; top: 16px; left: 160px; padding: 7px 10px; border: 1px solid #8f809e66; border-radius: 99px; background: #171627dc; color: #eee9f8; font: 10px/1 'Segoe UI', sans-serif; cursor: pointer; }
+body[data-dialogue-channel='api'] .channel-toggle { color: #ffe1a6; border-color: #daa357; background: #352914ed; }
+.channel-panel { position: fixed; z-index: 30; top: 53px; left: 16px; box-sizing: border-box; width: min(380px, calc(100vw - 32px)); max-height: calc(100dvh - 69px); overflow: auto; padding: 18px; border-radius: 16px; border: 1px solid #ba9bcf66; background: #101422fa; box-shadow: 0 18px 60px #0008; }
+.channel-panel[hidden] { display: none; }
+.channel-heading { display: flex; justify-content: space-between; align-items: center; gap: 16px; }
+.channel-heading h2 { font-size: 15px; margin: 0; }
+.channel-panel button { min-height: 34px; border: 1px solid #b7a6cb55; border-radius: 9px; padding: 7px 10px; color: #f1eafa; background: #c9a9ee12; font: inherit; cursor: pointer; }
+.channel-panel button:hover:not(:disabled), .channel-panel button[aria-pressed='true'] { background: #b18bc13b; border-color: #c9aad7; }
+.channel-panel button:disabled { opacity: .4; cursor: default; }
+.channel-panel button:focus-visible, .channel-panel input:focus-visible { outline: 2px solid #d7b8f6; outline-offset: 2px; }
+.channel-current { color: #dcceed; white-space: pre-line; overflow-wrap: anywhere; }
+.channel-actions { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.channel-note { color: #b3acc0; font-size: 11px; }
+.channel-form { display: grid; gap: 10px; margin: 16px 0 10px; }
+.channel-form label:not(.channel-consent) { display: grid; gap: 4px; }
+.channel-form input:not([type='checkbox']) { width: 100%; min-width: 0; box-sizing: border-box; border: 1px solid #b7a6cb55; border-radius: 7px; color: #f1eafa; background: #080b15; padding: 9px; font: inherit; }
+.channel-form input::placeholder { color: #8f879b; font-size: 10px; }
+.channel-destination { font-size: 11px; color: #ffdba9; overflow-wrap: anywhere; margin: 2px 0; }
+.channel-consent { display: flex; align-items: flex-start; gap: 9px; font-size: 11px; }
+.channel-consent input { width: 16px; height: 16px; flex: 0 0 auto; margin: 3px 0 0; accent-color: #c7a0df; }
+.channel-feedback { color: #ead2ac; min-height: 1em; margin-bottom: 0; }
+body:not(:has(#vrmCanvas)) .channel-toggle { top: auto; bottom: 18px; left: 20px; }
+body:not(:has(#vrmCanvas)) .channel-panel { top: auto; bottom: 56px; }
+@media (prefers-reduced-motion: reduce) { .dialogue-channel * { scroll-behavior: auto; } }

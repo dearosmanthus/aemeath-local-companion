@@ -1,0 +1,17 @@
+{
+  "AppVersion": "2.2.1.0",
+  "Title": "爱弥斯 · 本地赛博陪伴",
+  "Thumbnail": "portrait-aemeath.png",
+  "Preview": "portrait-aemeath.png",
+  "Desc": "低占用、音频响应的本地赛博女友动态桌面。",
+  "Author": "Chen + Codex",
+  "License": "Personal use",
+  "Contact": null,
+  "Type": 1,
+  "FileName": "index.html",
+  "Arguments": "--audio --pause-event true",
+  "IsAbsolutePath": false,
+  "Id": null,
+  "Tags": ["cyber", "companion", "audio responsive"],
+  "Version": 2
+}

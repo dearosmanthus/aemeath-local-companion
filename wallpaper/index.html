@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>爱弥斯 · 赛博陪伴桌面</title>
+  <link rel="stylesheet" href="wallpaper.css">
+  <link rel="stylesheet" href="stage-controls.css">
+  <link rel="stylesheet" href="/channel-controls.css">
+</head>
+<body>
+  <main class="scene" id="scene" aria-label="爱弥斯的本地动态桌面">
+    <video class="avatar-source" id="avatarStream" autoplay muted playsinline aria-hidden="true"></video>
+    <canvas class="avatar-stream" id="avatarCanvas" aria-hidden="true"></canvas>
+    <canvas class="vrm-avatar" id="vrmCanvas" aria-hidden="true"></canvas>
+    <div class="pet-avatar" id="petAvatar" aria-hidden="true"></div>
+    <div class="portrait" aria-hidden="true"></div>
+    <div class="aemeath-glow" aria-hidden="true"></div>
+    <div class="veil" aria-hidden="true"></div>
+    <canvas id="particles" aria-hidden="true"></canvas>
+    <div class="scanlines" aria-hidden="true"></div>
+    <div class="vignette" aria-hidden="true"></div>
+
+    <section class="presence" id="talkControl" role="button" tabindex="0" aria-label="开始与爱弥斯连续对话">
+      <div class="halo halo-one"></div>
+      <div class="halo halo-two"></div>
+      <div class="orb">
+        <div class="orb-aura"></div>
+        <div class="orb-core"></div>
+        <div class="orb-glint"></div>
+      </div>
+      <div class="wave wave-one"></div>
+      <div class="wave wave-two"></div>
+      <div class="wave wave-three"></div>
+      <div class="conversation-state" id="conversationState">点击光核开始说话</div>
+    </section>
+
+    <section class="identity">
+      <div class="sigil">爱</div>
+      <div>
+        <strong>AEMEATH // ONLINE</strong>
+        <span><i></i><b id="presenceState"> CONNECTING AVATAR</b></span>
+      </div>
+    </section>
+
+    <section class="clock" id="clock">
+      <time id="clockTime">00:00</time>
+      <span id="clockDate">08 · 13</span>
+    </section>
+
+    <div class="caption" id="caption">点击左侧光核，我会一直听着你。</div>
+
+    <button class="mic-settings-toggle" id="micSettingsToggle" type="button" title="麦克风设置" aria-label="打开麦克风设置">MIC ···</button>
+    <section class="mic-settings" id="micSettingsPanel" hidden>
+      <label for="micSelect">输入设备</label>
+      <select id="micSelect"><option value="">Windows 默认麦克风</option></select>
+      <div class="mic-meter"><i id="micMeterBar"></i></div>
+      <div class="mic-device-status" id="micDeviceStatus">说话时这里会显示输入电平</div>
+    </section>
+
+    <button class="character-toggle" id="characterToggle" type="button" aria-expanded="false" aria-controls="characterPanel" title="角色与动作">角色 ···</button>
+    <section class="character-panel" id="characterPanel" aria-labelledby="characterPanelTitle" hidden>
+      <div class="character-panel-heading">
+        <h2 id="characterPanelTitle">陪在你身边</h2>
+        <button class="character-close" id="characterClose" type="button" aria-label="收起角色设置" title="收起 · Esc">×</button>
+      </div>
+      <div class="character-setting">
+        <span id="characterFramingLabel">镜头</span>
+        <div class="character-segment" role="group" aria-labelledby="characterFramingLabel">
+          <button type="button" data-avatar-framing="portrait" aria-pressed="true" disabled>半身</button>
+          <button type="button" data-avatar-framing="full" aria-pressed="false" disabled>全身</button>
+        </div>
+      </div>
+      <div class="character-setting">
+        <span id="characterQualityLabel">画质</span>
+        <div class="character-segment" role="group" aria-labelledby="characterQualityLabel">
+          <button type="button" data-avatar-quality="balanced" aria-pressed="true" disabled>省电</button>
+          <button type="button" data-avatar-quality="high" aria-pressed="false" disabled>清晰</button>
+        </div>
+      </div>
+      <p class="character-performance" id="characterPerformance">对话时优先流畅，忙碌时自动调节清晰度。</p>
+      <div class="character-actions">
+        <div class="character-look" role="group" aria-label="外观风格">
+          <button type="button" data-avatar-appearance="soft" aria-pressed="true" disabled>游戏质感</button>
+          <button type="button" data-avatar-appearance="original" aria-pressed="false" disabled>原始效果</button>
+        </div>
+        <button id="characterWave" type="button" disabled>向你招手</button>
+        <button id="characterWaveSlow" type="button" disabled>慢动作检查 <small>8 秒</small></button>
+        <button id="characterDemo" type="button" disabled>动作演示 <small>12 秒</small></button>
+        <button class="character-sample" id="characterSample" type="button" disabled>听她说一句 <small>约 7 秒</small></button>
+        <button class="character-stop" id="characterStop" type="button" hidden>停止演示</button>
+      </div>
+      <p class="character-status" id="characterStatus" role="status" aria-live="polite">正在准备角色，加载完成后可预览。</p>
+      <p class="character-hint">动作预览 / 本地示例语音，无 AI 请求，也不会打开麦克风。</p>
+      <p class="character-credit">模型：鸣潮 / 1010浣 · 个人本地使用</p>
+    </section>
+  </main>
+  <script src="vrm-avatar.bundle.js"></script>
+  <script src="wallpaper.js"></script>
+  <script src="stage-controls.js"></script>
+  <script src="/channel-controls.js"></script>
+</body>
+</html>

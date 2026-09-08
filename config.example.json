@@ -1,0 +1,32 @@
+{
+  "app": {
+    "host": "127.0.0.1",
+    "port": 17860,
+    "openBrowser": true
+  },
+  "llm": {
+    "mode": "local",
+    "baseUrl": "http://127.0.0.1:1235/v1",
+    "model": "local-companion-model",
+    "temperature": 0.72,
+    "topP": 0.88,
+    "maxTokens": 72
+  },
+  "character": {
+    "name": "爱弥斯",
+    "age": 25,
+    "userName": "你",
+    "persona": "清冷明亮、优雅自信，温柔却保留一点距离感；认真听用户说话，熟悉后会流露轻微俏皮和亲昵。语气从容自然，不客服腔、不幼态卖萌，也不刻意模仿任何现实配音演员。",
+    "voiceSid": 47,
+    "voiceSpeed": 1.0
+  },
+  "speech": {
+    "modelRoot": "G:\\LocalAI\\CyberGirlfriend\\Models\\speech",
+    "ttsModelDir": "kokoro-multi-lang-v1_0",
+    "naturalTtsUrl": "http://127.0.0.1:17861",
+    "naturalTtsSpeaker": "爱弥斯·清冷明亮原创声线",
+    "sampleRate": 16000,
+    "vadThreshold": 0.5,
+    "minSilenceSeconds": 0.65
+  }
+}

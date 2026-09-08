@@ -1,0 +1,29 @@
+{
+  "name": "aemeath-local-companion",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local voice companion with an opt-in, session-only API dialogue channel",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "build:avatar": "esbuild wallpaper/vrm-avatar-entry.js --bundle --format=iife --platform=browser --target=chrome110 --outfile=wallpaper/vrm-avatar.bundle.js",
+    "check": "node --check server.js && node --check lib/companion-network.js && node --check lib/local-services.js && node --check lib/conversation-channel.js && node --check lib/character-dialogue.js && node --check scripts/check-local-config.cjs && node --check public/app.js && node --check public/channel-controls.js && node --check wallpaper/wallpaper.js && node --check wallpaper/stage-controls.js",
+    "test:avatar": "node scripts/test-pmx-performance.mjs && node scripts/test-avatar-view.mjs && node scripts/test-character-materials.mjs && node scripts/test-character-shadows.mjs && node scripts/test-render-performance.mjs",
+    "test:avatar:core": "node scripts/test-avatar-view.mjs && node scripts/test-render-performance.mjs",
+    "test:avatar:assets": "node scripts/test-avatar-assets.cjs",
+    "test:audio": "node scripts/test-audio-playback.cjs && node scripts/test-speech-prefetch.cjs && node scripts/test-speech-prefetch-integration.cjs",
+    "test:local": "node scripts/test-local-network.cjs && node scripts/test-local-services.cjs",
+    "test:channel": "node scripts/test-conversation-channel.cjs && node scripts/test-channel-integration.cjs",
+    "test:dialogue": "node scripts/test-character-dialogue.cjs"
+  },
+  "dependencies": {
+    "@pixiv/three-vrm": "^3.5.5",
+    "sherpa-onnx-node": "1.13.5",
+    "three": "^0.185.1",
+    "three-stdlib": "^2.36.1",
+    "ws": "8.21.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.9"
+  }
+}
